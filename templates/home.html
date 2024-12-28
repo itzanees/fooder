@@ -1,11 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fooder</title>
-</head>
-<body>
-    <h1>Welcome to fooder, foodies</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'nav.html' %}
+
+<div class="container">
+    <h1>Welcome to Fooder</h1>
+    <div class="container row">
+        <h3>Latest Dishes</h3>
+        {% for dish in new_dishes %}
+        <div class="col-md-4 shadow p-4 w-25 border border-secondary rounded-lg mx-4">
+            {% if dish.image %}
+            <img src="{{ dish.image.url }}" alt="{{ dish.title }}" width="40%">
+            {% endif %}
+            {{ user.dish.image }}
+            <h4>{{ dish.title }}</h4>
+            <h5>₹ {{ dish.price }}</h5>
+            <hr>
+            <a href="{% url 'dish' dish.category.slug dish.slug %}" class="btn btn-dark w-25 mt-2">View</a>
+            
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

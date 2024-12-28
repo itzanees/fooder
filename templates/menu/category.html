@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'nav.html' %}
+
+{% for dish in category.dishes.all %}
+
+<div class="col-md-4 shadow p-4 w-25 border border-secondary rounded-lg mx-4">
+    {% if dish.image %}
+    <img src="{{ dish.image.url }}" alt="{{ dish.title }}" width="40%">
+    {% endif %}
+    {{ user.dish.image }}
+    <h4>{{ dish.title }}</h4>
+    <h5>₹ {{ dish.price }}</h5>
+    <hr>
+    <a href="{% url 'dish' dish.category.slug dish.slug %}" class="btn btn-dark w-25 mt-2">View</a>
+    
+</div>
+{% endfor %}
+
+{% endblock %}

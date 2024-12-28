@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<main class="form-signin w-25 m-auto">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="text-center py-5" href="#"><img src="{% static 'images/logo.png' %}" alt=""></div>
+
+        <h3 class="h3 mb-3 fw-bold text-success text-center">Sign up</h3>
+        <div class="form-floating mt-2">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+            <label for="floatingInput">User Name</label>
+        </div>
+        <div class="form-floating mt-2">
+            <input type="email" class="form-control" id="floatingInput" placeholder="Username" name="email">
+            <label for="floatingInput">E-mail</label>
+        </div>
+        <div class="form-floating mt-2">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password1">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating mt-2">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password2">
+            <label for="floatingPassword">Confirm Password</label>
+        </div>
+        <div class="text-center mt-2">
+            <button class="btn btn-primary w-25 mt-2" type="submit">Signup</button>
+        </div>
+    </form>
+
+    <!-- <p class="text-md text-success text-center">{{ msg }}</p> -->
+
+    {% if form.errors %}
+    <div class="error-messages text-md text-danger">
+      <ul>
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+    <p class="mt-5 mb-3 text-md text-success text-center mr-3">Already registerd? | <a
+            href="{% url 'login' %}">Login</a></p>
+    <p class="text-md text-success text-center">Forgot Password? | <a href="{% url 'reset' %}">Reset Password</a></p>
+</main>
+
+
+
+
+{% endblock %}

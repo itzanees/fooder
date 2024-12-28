@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+
+<div class="text-center py-5" href="#"><img src="{% static 'images/logo.png' %}" alt=""></div>
+
+
+<div class="container container-fluid w-50 mt-50">
+  <main class="form-signin w-50 m-auto">
+    <form method="post">
+      {% csrf_token %}
+      <h3 class="h3 mb-3 fw-bold text-center text-success">Sign in</h3>
+
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="username">
+        <label for="floatingInput">Username</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary w-25 py-2" type="submit">Sign in</button>
+      </div>
+    </form>
+    <p class="text-md text-success text-center">{{ msg }}</p>
+
+    <p class="mt-5 mb-3 text-md text-success text-center mr-3">New User? | <a href="{% url 'signup' %}">Signup</a></p>
+    <p class="text-md text-success text-center">Forgot Password? | <a href="{% url 'reset' %}">Reset Password</a></p>
+
+  </main>
+
+</div>
+{% endblock %}

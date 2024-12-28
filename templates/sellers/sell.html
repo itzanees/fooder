@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'nav.html' %}
+
+<h1>Now you can sell {{ seller.name }}</h1>
+
+<div class="container p-5">
+    <h3> My Dishes</h3>
+    {% if dishes %}
+    <table class="table w-50">
+        <thead>
+            <th>Item</th>
+            <th>Price</th>
+        </thead>
+        <tbody>
+            {% for item in dishes %}
+            <tr>
+                <td><a href="{% url 'dish' item.category.slug item.slug %}">{{ item.title }}</a></td>
+                <td>₹{{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p> No dishes to show</p>
+    {% endif %}
+    <a class="btn btn-primary text-uppercase mt-2" href="{% url 'add_dish' %}">Add Dishes</a>
+</div>
+
+
+
+{% endblock %}

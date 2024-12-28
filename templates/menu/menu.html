@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% include 'nav.html' %}
+
+<h1>{{ dish.title }} by {{ dish.shop.name }}</h1>
+{% if dish.image %}
+<img src="{{ dish.image.url }}" alt="{{ dish.title }}" width="35%">
+{% endif %}
+
+<h5>{{ dish.title }}, at ₹ {{ dish.price }}</h5>
+<p>{{ dish.description }}</p>
+
+{% if similar_dishes %}
+<hr>
+<h3>Similar Dishes</h3>
+{% for dish in similar_dishes %}
+<div class="col shadow p-4 w-25 border border-secondary rounded-lg mx-4">
+    {% if dish.image %}
+    <img src="{{ dish.image.url }}" alt="{{ dish.title }}" width="40%">
+    {% endif %}
+    {{ user.dish.image }}
+    <h3>{{ dish.title }}</h3>
+    <h3>{{ dish.price }}</h3>
+    <hr>
+    <a href="{% url 'dish' dish.category.slug dish.slug %}" class="btn btn-dark w-25 mt-2">View</a>
+
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
